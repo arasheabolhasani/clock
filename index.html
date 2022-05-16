@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap" rel="stylesheet">
+    <style>
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #2D4263;
+            color: #ECDBBA;
+        }
+
+        .container {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .clock {
+            font-size: 4rem;
+            font-weight: 700;
+        }
+
+        .date {
+            font-size: 2rem;
+            font-weight: 300;
+            padding-top: 1rem;
+        }
+        
+        @media screen and (min-width: 700px) {
+            .clock {
+                font-size: 6rem;
+            }
+
+            .date {
+                font-size: 3rem;
+            }
+        }
+
+        @media screen and (min-width: 900px) {
+            .clock {
+                font-size: 8rem;
+            }
+
+            .date {
+                font-size: 4rem;
+            }
+        }
+
+        @media screen and (min-width: 1100px) {
+            .clock {
+                font-size: 10rem;
+            }
+
+            .date {
+                font-size: 5rem;
+            }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="clock"></div>
+        <div class="date"></div>
+        <!-- <div class="weekday"></div> -->
+    </div>
+
+    <script>
+        
+        function getTime() {
+                const now = new Date();
+
+                const timeOptions = {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                }
+                const time = now.toLocaleTimeString('en-US', timeOptions)
+
+                const dateOptions = {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                };
+                const date = now.toLocaleDateString('en-US', dateOptions);
+
+                const weekday = now.toLocaleDateString('en-US', {weekday: 'long'});
+                
+                document.querySelector('.clock').innerText = time;
+                document.querySelector('.date').innerText = date;
+                // document.querySelector('.weekday').innerText = weekday;
+            }
+        setInterval(getTime, 1000);
+        
+    </script>
+</body>
+</html>
